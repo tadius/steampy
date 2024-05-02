@@ -132,6 +132,9 @@ class SteamClient:
     @login_required
     def is_session_alive(self) -> bool:
         steam_login = self.username
+        headers = {
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+        }
         main_page_response = self._session.get(SteamUrl.COMMUNITY_URL)
         return steam_login.lower() in main_page_response.text.lower()
 
